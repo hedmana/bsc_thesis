@@ -10,29 +10,18 @@
 %\documentclass[english, 12pt, a4paper, elec, dvips, online]{aaltothesis}
 
 \usepackage{graphicx}
-%% Math fonts, symbols, and formatting; these are usually needed
-\usepackage{amsfonts,amssymb,amsbsy,amsmath}
+%% Math fonts, symbols, and formatting
+\usepackage{amsfonts,amssymb,amsbsy,amsmath, enumitem}
 
 
-%% Edit to conform to your degree programme
-%%
+%% THESIS INFO
 \degreeprogram{Electrical engineering}
-%%
 
-%% Your major
-%%
 \major{Bioinformation technology}
-%%
 
-%% Major subject code
-%%
 \code{ELEC3016}
-%%
- 
-%% Choose one of the three below
-%%
-\univdegree{BSc}
 
+\univdegree{BSc}
 
 \thesisauthor{Axel Hedman}
 
@@ -40,33 +29,27 @@
 
 \place{Espoo}
 
-%% The date for the bachelor's thesis is the day it is presented
 \date{31.1.2023}
 
-
-%% Thesis supervisor
 \supervisor{PhD\ Markus Turunen}
 
-%% Advisor(s)---two at the most---of the thesis.
-\advisor{PhD Lauri Palva}
+\advisor{PhD\ Lauri Palva}
 \advisor{Matej Zajo Králik}
+
 
 %% Aaltologo: syntax:
 %% \uselogo{aaltoRed|aaltoBlue|aaltoYellow|aaltoGray|aaltoGrayScale}{?|!|''}
-%% The logo language is set to be the same as the thesis language.
-%%
 \uselogo{aaltoRed}{''}
-%%
 
-%% The English abstract:
+
+%% THE ENGLISH ABSTRACT:
 %% Thesis keywords:
-%% Keywords are separated using the \spc macro
 \keywords{morning fasting glucose\spc metabolic health\spc CGM\spc fasting plasma glucose}
 
 %% The abstract text. This text is included in the metadata of the pdf file as well
 %% as the abstract page.
 \thesisabstract{
-Hello!
+TO DO!
 }
 
 %% Copyright text. Copyright of a work is with the creator/author of the work
@@ -81,40 +64,27 @@ Hello!
 \copyrighttext{Copyright \noexpand\copyright\ \number\year\ \ThesisAuthor}
 {Copyright \copyright{} \number\year{} \ThesisAuthor}
 
-%% All that is printed on paper starts here
-%%
+
 \begin{document}
 
 %% Create the coverpage
-%%
 \makecoverpage
+
 
 %% Typeset the copyright text.
 %% If you wish, you may leave out the copyright text from the human-readable
 %% page of the pdf file. This may seem like a attractive idea for the printed
 %% document especially if "Copyright (c) yyyy Eddie Engineer" is the only text
 %% on the page. However, the recommendation is to print this copyright text.
-%%
 \makecopyrightpage
 
-%% Note that when writting your thesis in English, place the English abstract
-%% first followed by the possible Finnish or Swedish abstract.
 
-%% Abstract text
+%% ENGLISH ABSTRACT
 %% All the details (name, title, etc.) on the abstract page appear as specified
 %% above.
-%%
 \begin{abstractpage}[english]
-Hello
+    \abstracttext{}
 \end{abstractpage}
-
-%% The text in the \thesisabstract macro is stored in the macro \abstractext, so
-%% you can use the text metadata abstract directly as follows:
-%%
-%\begin{abstractpage}[english]
-%	\abstracttext{}
-%\end{abstractpage}
-
 
 %% Force new page so that the Swedish abstract starts from a new page
 \newpage
@@ -126,15 +96,13 @@ Hello
 \advisor{Matej Zajo Králik} 
 \degreeprogram{Elektroteknik}
 \major{Bioinformationsteknologi}
-%% Abstract keywords
 \keywords{morgonfasteglukos\spc metabol hälsa\spc CGM\spc fasteplasmaglukos}
-%% Abstract text
 \begin{abstractpage}[swedish]
-Halloj
+TO DO!
 \end{abstractpage}
 
-%% Preface
-%%
+
+%% PREFACE
 %% This section is optional.
 \mysection{Preface}
 
@@ -147,7 +115,7 @@ Otaniemi, 31.1.2023
 \newpage
 
 
-%% Table of contents. 
+%% TABLE OF CONTENTS
 \thesistableofcontents
 
 
@@ -155,12 +123,6 @@ Otaniemi, 31.1.2023
 \mysection{Symbols and abbreviations}
 
 \subsection*{Symbols}
-
-\begin{tabular}{ll}
-
-\end{tabular}
-
-\subsection*{Operators}
 
 \begin{tabular}{ll}
 
@@ -176,34 +138,61 @@ FPG        & fasting plasma glucose \\
 
 \cleardoublepage
 
+
+%% List of research questions
+\newlist{questions}{enumerate}{2}
+\setlist[questions,1]{label=RQ\arabic*.,ref=RQ\arabic*}
+\setlist[questions,2]{label=(\alph*),ref=\thequestionsi(\alph*)}
+
 %% INTRODUCTION
 \section{Introduction}
-Hello \cite{moebus_impact_2011}
-%% Leave page number of the first page empty
-%% 
 \thispagestyle{empty}
 
+%% TEXT %%
+Hello this is the first paragraph
+
+The research questions addressed in this study are
+\begin{questions}[leftmargin=50pt]
+    \item Can morning fasting glucose be determined by CGM data? 
+    \item Does the morning fasting glucose of a single individual vary?
+    \item How does morning fasting glucose link to metabolic disorder?\label{itm:qwithlabel}
+\end{questions}
+
+%% END TEXT %%
 \clearpage
+
 
 %% BACKGROUND
 \section{Background}
+%% TEXT %%
 
+%% END TEXT %%
 \clearpage
+
 
 %% RESEARCH MATERIAL AND METHODS
 \section{Research material and methods}
+%% TEXT %%
 
+%% END TEXT %%
 \clearpage
+
 
 %% RESULTS
 \section{Results}
+%% TEXT %%
 
+%% END TEXT %%
 \clearpage
+
 
 %% SUMMARY
 \section{Summary} 
+%% TEXT %%
 
+%% END TEXT %%
 \clearpage
+
 
 %% REFERENCES
 \bibliographystyle{IEEEtran}
@@ -211,6 +200,7 @@ Hello \cite{moebus_impact_2011}
 
 \clearpage
 
+%% ADD POSSIBLE APPENDIX HERE
 \thesisappendix
 
 \end{document}
