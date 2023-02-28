@@ -9,10 +9,11 @@
 %\documentclass[english, 12pt, a4paper, elec, utf8, a-1b]{aaltothesis}
 %\documentclass[english, 12pt, a4paper, elec, dvips, online]{aaltothesis}
 
+\UseRawInputEncoding
 \usepackage{graphicx}
 %% Math fonts, symbols, and formatting
 \usepackage{amsfonts,amssymb,amsbsy,amsmath, enumitem}
-
+ 
 
 %% THESIS INFO
 \degreeprogram{Electrical engineering}
@@ -33,13 +34,13 @@
 
 \supervisor{PhD\ Markus Turunen}
 
-\advisor{PhD\ Lauri Palva}
-\advisor{Matej Zajo Králik}
+\advisor{D.Sc\ Lauri Palva}
+\advisor{Mgr.\ Matej Kr\`{a}lik}
 
 
 %% Aaltologo: syntax:
 %% \uselogo{aaltoRed|aaltoBlue|aaltoYellow|aaltoGray|aaltoGrayScale}{?|!|''}
-\uselogo{aaltoRed}{''}
+\uselogo{aaltoRed}{!}
 
 
 %% THE ENGLISH ABSTRACT:
@@ -90,13 +91,13 @@ TO DO!
 \newpage
 
 %% SWEDISH ABSTRACT.
-\thesistitle{Morgonfasteglukos fastställt av kontinuerlig glukosmonitorering}
+\thesistitle{Morgonfasteglukos fastst\"{a}llt av kontinuerlig glukosmonitorering}
 \supervisor{TkD\ Markus Turunen}
-\advisor{TkD\ Lauri Palva} 
-\advisor{Matej Zajo Králik} 
+\advisor{?\ Lauri Palva} 
+\advisor{Mgr. Matej Kr\`{a}lik} 
 \degreeprogram{Elektroteknik}
 \major{Bioinformationsteknologi}
-\keywords{morgonfasteglukos\spc metabol hälsa\spc CGM\spc fasteplasmaglukos}
+\keywords{morgonfasteglukos\spc metabol h\"{a}lsa\spc CGM\spc fasteplasmaglukos}
 \begin{abstractpage}[swedish]
 TO DO!
 \end{abstractpage}
@@ -104,15 +105,10 @@ TO DO!
 
 %% PREFACE
 %% This section is optional.
-\mysection{Preface}
+%%\vspace{5mm}
+%%{\hfill Axel J.\ H.\ Hedman \hspace{1cm}}
 
-\vspace{5cm}
-Otaniemi, 31.1.2023
-
-\vspace{5mm}
-{\hfill Axel J.\ H.\ Hedman \hspace{1cm}}
-
-\newpage
+%%\newpage
 
 
 %% TABLE OF CONTENTS
@@ -131,13 +127,15 @@ Otaniemi, 31.1.2023
 \subsection*{Abbreviations}
 
 \begin{tabular}{ll}
-MFG         & morning fasting glucose \\
+BMI         & body mass index \\
 CGM      & continuous glucose monitoring \\
-FPG        & fasting plasma glucose \\ 
+FPG        & fasting plasma glucose \\
+MARD        &  mean absolute relative difference \\
+MFG         & morning fasting glucose \\
+OGTT        & Oral Glucose Tolerance Test \\
 \end{tabular}
 
 \cleardoublepage
-
 
 %% List of research questions
 \newlist{questions}{enumerate}{2}
@@ -149,22 +147,159 @@ FPG        & fasting plasma glucose \\
 \thispagestyle{empty}
 
 %% TEXT %%
-Hello this is the first paragraph
+The prevalence of obesity and overweight is a growing 
+health issue worldwide. Since 1980, the rate of obesity 
+and overweight has doubled. Today, nearly a third of 
+the world's population is considered obese or overweight 
+\cite{chooi_epidemiology_2019}. As the prevalence of obesity and overweight 
+increases, public health is at risk. Obesity affects 
+nearly all physiological activity in the human body. It 
+lowers life expectancy and increases the risk of multiple 
+severe diseases including diabetes mellitus, 
+cardiovascular disease, and various types of cancer\cite{chooi_epidemiology_2019}\cite{nammi_obesity_2004}. 
+There are several approaches how to tackle obesity and 
+overweight but the majority of them revolve around 
+diet and lifestyle management. Medications and surgery may solve 
+short-term complications but several studies have shown 
+that lifestyle changes are necessary to ultimately 
+overcome obesity\cite{nammi_obesity_2004}\cite{mauro_barriers_2008}\cite{powell_effective_2007}\cite{marquis-gravel_intensive_2015}.
 
-The research questions addressed in this study are
+When used correctly, glucose monitoring can be a useful tool when tracking 
+changes in lifestyle. Diet and exercise heavily affect blood
+glucose levels as well as overall health. Studies have shown that healthy lifestyle changes
+not only lowers blood glucose levels but it also results in a healthier Body Mass Index (BMI) and weight,
+improved cholesterol and triglyceride values, and lower blood pressure\cite{yamaoka_effects_2012}.
+If not managed correctly, blood glucose levels can reach unusually high or low levels potentially causing 
+acute and chronic conditions\cite{mathew_blood_2022}.  
+
+Traditionally, glucose levels have been monitored with blood 
+samples and fingertip pricks. A combination of obesity
+and unnecessarily high glucose levels can lead to the onset of type 2 diabetes\cite{garber_obesity_2012}.
+Type 2 diabetes patients are heavily dependent on glucose monitoring 
+to manage possible medications and avoid critical conditions\cite{ripsin_management_2009}. 
+Nevertheless, studies have shown that
+with appropriate lifestyle changes, type 2 diabetes can be reversed with diet alone\cite{taylor_type_2013}. 
+Such a reversal requires an understanding of glucose management.
+Hence, glucose management is a vital part of alleviating and 
+preventing obesity and type 2 diabetes.
+
+Fasting Plasma Glucose (FPG) is an established indicator of whether 
+an individual is metabolically healthy or not\cite{moebus_impact_2011}. 
+FPG is usually measured from a blood sample taken after a minimum of 8 
+hours of fasting\cite{the_expert_committee_on_the_diagnosis_and_classification_of_diabetes_mellitus_report_1997}. 
+An FPG test traditionally requires a medical appointment. But what if there was a
+way of estimating FPG values without having to schedule a medical 
+appointment? 
+
+Modern technology has brought alternative glucose measurement methods. 
+Continuous Glucose Monitoring (CGM) is an already proven method to 
+monitor glucose levels\cite{danne_international_2017}. CGM 
+has struggled to become a medically approved method due to
+large measurement errors. In the year 2000, the Mean Absolute Relative Difference
+(MARD) of CGM was larger than $\pm$20\% which is the accepted average for 
+regulatory approval. As technology advanced the MARD of CGM has 
+now reduced to under $\pm$10\% and accuracy continues to improve\cite{rodbard_continuous_2016}\cite{ctx3255462370006526}.
+
+CGM uses an electrochemical biosensor to measure glucose levels
+in the interstitial fluid between the skin and blood capillaries.
+The biosensor utilizes a small filament inserted through the skin 
+to measure glucose levels. The in vivo response to a needle-type 
+biosensor has been one of the biggest challenges to accurate CGM
+measurements. The infiltration of proteins, the release of cytokines 
+and reactive oxygen species, and subsequent influx of 
+inflammatory cells all contribute to the instability of implanted 
+glucose sensors.\cite{ctx3255462370006526}. Nevertheless, compared to
+blood samples and fingertip pricks, CGM provides a complete set 
+of continuous glucose data for the user to analyze. A fingertip
+prick, for example, doesn't provide an overview of the long-term
+effects that lifestyle and diet have on glucose levels. Hence, CGM
+has established itself as a viable option when it comes to 
+glycemic control and overall improvement of metabolic health. 
+
+This thesis is the result of a collaboration 
+with Veri\cite{noauthor_veri_nodate}, a company focusing on improving 
+metabolic health through CGM. Veri combines a mobile application with a CGM 
+sensor providing continuous glucose data for the user to analyze. By tracking 
+glucose levels with a CGM, users are able to observe the metabolic impact
+of diet, sleep, stress, exercise, and other lifestyle factors on long-term health. 
+To support the research and conclusions of this thesis, Veri has 
+provided user data of 6000 people with an average of 7 days of data 
+per user. The dataset includes meals, exercise, and sensor data. 
+In addition to the dataset, Veri provides guidance and insights to match
+industry standards in real-world applications.
+
+The aim of this thesis is to explore the possible usage of CGM 
+data for approximating FPG. After establishing whether FPG can be 
+estimated, the thesis will also look into how fasting glucose values 
+vary over time and if they can be used to estimate the prevalence of 
+certain metabolic disorders. In science, the term is Fasting Plasma Glucose but with CGM and without 
+complete user data it is to achieve a value as accurate as 
+FPG. Therefore, Veri has established morning fasting glucose (MFG) to estimate FPG. 
+MFG aims to be as close to FPG as possible. The advantage
+of MFG is that, with CGM, it can be continuously acquired from day to day without 
+having to schedule a doctor's appointment. Likewise, the estimation includes data 
+acquired over a longer period of time compared to the momentary measurement of FPG. 
+Earlier research on the topic and the dataset provided by Veri will 
+be the supporting pillars when examining the possibilities of estimating an 
+FPG value from CGM data. 
+
+The research questions addressed in this thesis are
 \begin{questions}[leftmargin=50pt]
-    \item Can morning fasting glucose be determined by CGM data? 
-    \item Does the morning fasting glucose of a single individual vary?
-    \item How does morning fasting glucose link to metabolic disorder?\label{itm:qwithlabel}
+    \item Can morning fasting glucose be estimated using CGM data?
+    \item How does morning fasting glucose of a single individual vary over time?
+    \item Can MFG be used to estimate the prevalence of certain metabolic disorders? \label{itm:qwithlabel}
 \end{questions}
 
+In chapters 2,3 and 4...
+
 %% END TEXT %%
+
 \clearpage
 
 
 %% BACKGROUND
 \section{Background}
 %% TEXT %%
+\subsection{Fasting Plasma Glucose}
+FPG is a metric used when evaluating the metabolic health of an individual.
+FPG is often used as a screening method to evaluate the risk of developing type 2 diabetes.
+Normal FPG levels range between 4.0 mmol/l and 5.6 mmol/l. An FPG value of 5.6 - 6.0 mmol/l 
+indicates a risk of developing type 2 diabetes. Prediabetes is a state in which FPG
+levels exceed normal levels to reach values of 6.1 - 6.9 mmol/l. FPG values
+higher than 7 mmol/l indicate that the individual has diabetes\cite{mathew_blood_2022}. 
+If FPG levels reach the prediabetes state it is recommended to conduct further testing to confirm if 
+the patient has diabetes or not. If not the patient should continue frequent screening and apply 
+lifestyle changes to ensure that FPG ceases to increase.\cite{ekoe_screening_2018}.
+Type 2 diabetes develops over a longer period of time. Impaired Glucose Tolerance (IGT) and Impaired Fasting
+Glucose (IFG) are both complications associated with diabetes\cite{walker_diet_2010}. 
+
+\subsubsection{Impaired Fasting Glucose \& Impaired Glucose Tolerance}
+IGF is defined by FPG concentration. An elevated FPG value of 5.6-7 mmol/l is enough to diagnose 
+a patient with IFG \cite{nathan_impaired_2007}. IGT is determined by an Oral Glucose Tolerance 
+Test (OGTT). OGTT includes consuming a 75g glucose load and measuring plasma glucose 2h after consumption. 
+An OGTT value of 7.8-11.1 mmol/l and an FPG value of < 7 mmol/l is enough to diagnose a patient with IGT\cite{nathan_impaired_2007}. 
+The overlap in FPG shows that one can suffer from both IFG and IGT. Historical patterns show that among individuals 
+diagnosed with either IGT or IFG, 25\% progress to diabetes, 50\% remain in the abnormal range 
+without developing diabetes, and 25\% reacquire normal glucose tolerance. 
+Being diagnosed with both of these metabolic complications doubles the rate of developing diabetes \cite{nathan_impaired_2007}.
+
+
+\subsection{Lifestyle and plasma glucose}
+The earlier one detects FPG abnormalities the better. Metabolic disorders develop over a longer period of time.
+
+\subsubsection{Diet}
+
+\subsubsection{Excersice}
+
+\subsubsection{Stress}
+
+\subsubsection{Obesity and type 2 diabetes}
+Obesity is a result of an unhealthy lifestyle over a longer period of time. If not treated correctly, obesity may cause elevations in FPG which leads to IGT and IFG, and eventually diabetes[SOURCE]. 
+Studies have shown that correctly implemented lifestyle changes during the prediabetes stage can lower FPG levels and reduce the risk for type 2 diabetes significantly\cite{walker_diet_2010}\cite{taylor_type_2013}. 
+Other studies have also shown how type 2 diabetes can be reversed by diet\cite{taylor_type_2013}. A strict low calory diet
+has been proven to bring FPG to a normal level among individuals diagnosed with type 2 diabetes\cite{taylor_type_2013}. 
+
+\subsection{Continuous Glucose Monitoring}
 
 %% END TEXT %%
 \clearpage
